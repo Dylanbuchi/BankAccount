@@ -1,20 +1,68 @@
 package app;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import app.utilities.CsvFile;
+
 public class BankAccountApp {
     public static void main(String[] args) throws Exception {
 
-        Checking checkAcc01 = new Checking("Jon will", "123456789", 1200);
+        final String file = "C:\\Users\\crypt\\Desktop\\MyJava\\Projects\\Udemy Projects\\BankAccount\\NewBankAccounts.csv";
 
-        Savings saveAcc01 = new Savings("James Lowl", "234567890", 300);
-        // Read CVS file and create new accounts based on the file data
+        List<String[]> customersAccounts = CsvFile.readCsvFile(file);
 
-        // checkAcc01.showInfo();
+        List<Account> accounts = new LinkedList<Account>();
 
-        // System.out.println("****************************" + "\n");
+        // inside Csv file
+        for (String[] customerAcc : customersAccounts) {
 
-        // saveAcc01.showInfo();
+            String name = customerAcc[0];
+            String securityNumber = customerAcc[1];
+            String accountType = customerAcc[2];
 
-        saveAcc01.compound();
+            double balance = Double.parseDouble(customerAcc[3]);
 
+            // savings account
+            if (accountType.equals("Savings")) {
+
+                accounts.add(new Savings(name, securityNumber, balance));
+
+            } else if (accountType.equals("Checking")) {
+                accounts.add(new Checking(name, securityNumber, balance));
+
+            } else {
+
+                System.out.println("Cant' create an account for the moment.. \n Please try again later");
+            }
+
+        }
+        // print all customers info
+        for (Account account : accounts) {
+
+            System.out.println("************************************\n");
+            account.showInfo();
+
+        }
+        // some examples on how the methos works
+        System.out.println("************************************\n");
+
+        accounts.get(0).withdraw(200);
+
+        System.out.println("************************************\n ");
+
+        accounts.get(1).transfer("to my Paypal account", 24);
+
+        System.out.println("************************************\n");
+
+        accounts.get(2).deposit(1000);
+
+        System.out.println("************************************\n");
+
+        accounts.get(3).showBalance();
+
+        System.out.println("************************************\n");
+
+        System.out.println("Bye");
     }
 }

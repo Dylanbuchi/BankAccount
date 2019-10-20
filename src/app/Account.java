@@ -7,12 +7,12 @@ public abstract class Account implements IBaseRate {
     // unique number
     static int uniqueDigitNumbers = 73450;
 
-    String name;
-    String securityNumber;
-    String accountNumber;
+    private String name;
+    private String securityNumber;
+    protected String accountNumber;
 
-    double rate;
-    double balance;
+    protected double rate;
+    private double balance;
 
     /**
      * constructor

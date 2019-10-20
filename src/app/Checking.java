@@ -5,8 +5,8 @@ package app;
  */
 public class Checking extends Account {
 
-    int debitCardNumber;
-    int debitCardPin;
+    private int debitCardNumber;
+    private int debitCardPin;
 
     /**
      * @param name

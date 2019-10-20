@@ -4,8 +4,8 @@ package app;
  * Savings
  */
 public class Savings extends Account {
-    int safetyDepositBoxID;
-    int safetyDepositBoxKey;
+    private int safetyDepositBoxID;
+    private int safetyDepositBoxKey;
 
     /**
      * @param name
